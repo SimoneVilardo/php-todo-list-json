@@ -49,7 +49,7 @@
                         <div class="col-12">
                             <div class="input-group mb-3">
                                 <!-- input per inserire la parola -->
-                                <input type="text" @keyup.enter="updateList" v-model="todoItem" placeholder="Todo" class="form-control">
+                                <input type="text" @keyup.enter="updateList" v-model="todoItem" placeholder="Inserisci Item" class="form-control">
                                 <div class="input-group-append">
                                     <!-- bottone per aggiungere -->
                                     <button @click="updateList" class="btn btn-success" id="button-add">Aggiungi</button>
