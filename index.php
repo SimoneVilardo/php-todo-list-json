@@ -15,6 +15,33 @@
     </head>
 
     <body>
+        <div class="generals d-flex justify-content-center align-items-center bg-primary">
+            <div id="app" class="bg-white rounded-1">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-12">
+                            <!-- contenitore della lista -->
+                            <h1 class="display-1 text-muted">Todo List</h1>
+                            <ul class="list-group list-group-flush border border-1 rounded">
+                                <li v-for="(item, index) in todoList" :key="index" class="list-group-item">{{ item.text }}</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="container">
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="input-group mb-3">
+                                <!-- input per inserire la parola -->
+                                <input type="text" @keyup.enter="updateList" v-model="todoItem" placeholder="Todo" class="form-control">
+                                <!-- bottone per aggiungere -->
+                                <button @click="updateList" class="btn btn-outline-success" id="button-add">Aggiungi</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
 
         <!-- link axios -->
         <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.4.0/axios.min.js" integrity="sha512-uMtXmF28A2Ab/JJO2t/vYhlaa/3ahUOgj1Zf27M5rOo8/+fcTUVH0/E0ll68njmjrLqOBjXM3V9NiPFL5ywWPQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
@@ -25,5 +52,4 @@
         <!--link script JS-->
         <script text="text/javascript" src="./js/script.js"></script>
     </body>
-
 </html>
