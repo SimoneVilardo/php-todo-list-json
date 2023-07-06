@@ -8,3 +8,11 @@
     height: 100vh;
     width: 100%;
 }
+
+.item-done {
+    text-decoration: line-through;
+}
+
+.pad-item {
+    padding-right: 50px;
+}

@@ -5,7 +5,7 @@ createApp({
         return {
             // inizializziamo le variabili vuote
             todoItem: '', // elemento da aggiungere alla lista
-            todoList: null, // lista degli elementi
+            todoList: [], // lista degli elementi
             apiUrl: 'server.php' // URL dell'API per recuperare e aggiornare i dati
         }
     },
@@ -30,6 +30,16 @@ createApp({
                 this.todoItem = ''; // resetta l'elemento da aggiungere
                 this.todoList = response.data; // assegna i dati della risposta alla lista aggiornata
             });
+        },
+        // cambia item
+        changeItemStatus(index) {
+            this.todoList[index].done = !this.todoList[index].done;
+        },
+
+        // elimina item
+        deleteItem(index) {
+            this.todoList.splice(index, 1);
         }
+
     },
 }).mount('#app');

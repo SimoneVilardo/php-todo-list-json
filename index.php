@@ -21,9 +21,25 @@
                     <div class="row">
                         <div class="col-12">
                             <!-- contenitore della lista -->
-                            <h1 class="display-1 text-muted">Todo List</h1>
-                            <ul class="list-group list-group-flush border border-1 rounded">
-                                <li v-for="(item, index) in todoList" :key="index" class="list-group-item">{{ item.text }}</li>
+                            <h1 class="display-1 fw-bold text-center">Todo List</h1>
+                            <ul class="list-group list-group-flush border border-1 rounded d-flex">
+                                <li v-for="(item, index) in todoList" :key="index" class="list-group-item">
+                                    <div class="d-flex justify-content-between">
+                                        <div :class="item.done === true ? 'item-done' : '' ">
+                                            {{ item.text }}
+                                        </div>
+
+                                        <!-- Pulsanti per cambiare lo stato del task e cancellarlo -->
+                                        <div>
+                                            <button class="btn btn-sm me-2" :class="item.done ? 'btn-dark' : 'btn-primary'" @click="changeItemStatus(index)">
+                                                <i class="fas" :class="item.done ? 'fa-x' : 'fa-check'"></i>
+                                            </button>
+                                            <button class="btn btn-sm btn-danger" @click="deleteItem(index)">
+                                                <i class="fas fa-trash"></i>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </li>
                             </ul>
                         </div>
                     </div>
@@ -34,8 +50,10 @@
                             <div class="input-group mb-3">
                                 <!-- input per inserire la parola -->
                                 <input type="text" @keyup.enter="updateList" v-model="todoItem" placeholder="Todo" class="form-control">
-                                <!-- bottone per aggiungere -->
-                                <button @click="updateList" class="btn btn-outline-success" id="button-add">Aggiungi</button>
+                                <div class="input-group-append">
+                                    <!-- bottone per aggiungere -->
+                                    <button @click="updateList" class="btn btn-success" id="button-add">Aggiungi</button>
+                                </div>
                             </div>
                         </div>
                     </div>
