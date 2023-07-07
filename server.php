@@ -1,34 +1,39 @@
 <?php
-// Percorso del file JSON
-$jsonFilePath = 'data/todo_list.json';
-
-// Recupera il contenuto del file JSON
-$jsonContent = file_get_contents($jsonFilePath);
+// recupero il contenuto del file JSON
+$sting = file_get_contents('data/todo_list.json') ;
 
 // Converte il contenuto in un array associativo
-$todoList = json_decode($jsonContent, true);
+$array = json_decode($sting , true);
 
 // Controllo se è stata inviata una richiesta POST per aggiungere una nuova task
 if (isset($_POST['todoItem'])) {
-    // Recupera il valore inviato
-    $newItem = array(
+    
+    $task = [
         'text' => $_POST['todoItem'],
         'done' => false
-    );
+    ];
 
-    // Aggiunge la nuova task all'array
-    $todoList[] = $newItem;
-
-    // Converte l'array in formato JSON
-    $updatedJsonContent = json_encode($todoList, JSON_PRETTY_PRINT);
-
-    // Salva il contenuto nel file JSON
-    file_put_contents($jsonFilePath, $updatedJsonContent);
+    array_push($array, $task);
+    $array_encoded = json_encode($array);
+    file_get_contents('data/todo_list.json', $array_encoded);
 }
+
+if(isset($_POST['changeItemStatus'])){
+    $array[$_POST['updateTaskIndex']]['done'] = !$array[$_POST['changeItemStatus']]['done'];
+    $array_encoded = json_encode($array);
+    file_put_contents('data/todo_list.json', $array_encoded);
+}
+
+if(isset($_POST['deleteItemIndex'])){
+    array_splice($array, $_POST['deleteItemIndex'], 1);
+    $array_encoded = json_encode($array);
+    file_put_contents('data/todo_list.json', $array_encoded);
+}
+
 
 // Imposta l'intestazione della risposta come JSON
 header('Content-Type: application/json');
 
 // Restituisce l'array della lista delle task come JSON
-echo json_encode($todoList);
+echo json_encode($array);
 ?>

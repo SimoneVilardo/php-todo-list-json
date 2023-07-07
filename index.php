@@ -31,7 +31,7 @@
 
                                         <!-- Pulsanti per cambiare lo stato del task e cancellarlo -->
                                         <div>
-                                            <button class="btn btn-sm me-2" :class="item.done ? 'btn-dark' : 'btn-primary'" @click="changeItemStatus(index)">
+                                            <button class="btn btn-sm me-2" :class="item.done ? 'btn-dark' : 'btn-primary'" @click="toggle(index)">
                                                 <i class="fas" :class="item.done ? 'fa-x' : 'fa-check'"></i>
                                             </button>
                                             <button class="btn btn-sm btn-danger" @click="deleteItem(index)">

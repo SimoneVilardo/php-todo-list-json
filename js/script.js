@@ -32,13 +32,23 @@ createApp({
             });
         },
         // cambia item
-        changeItemStatus(index) {
-            this.todoList[index].done = !this.todoList[index].done;
+        toggle(index) {
+            const data = new FormData();
+            data.append('updateTaskIndex', index);
+
+            axios.post(this.apiUrl, data).then((response) => {
+                this.todoList = response.data;
+            });
         },
 
         // elimina item
         deleteItem(index) {
-            this.todoList.splice(index, 1);
+            const data = new FormData();
+            data.append('deleteItemIndex', index);
+
+            axios.post(this.apiUrl, data).then((response) => {
+                this.todoList = response.data;
+            });
         }
 
     },
